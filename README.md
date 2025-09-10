@@ -5,9 +5,7 @@ University project - Software Development 2 | Java + Spring Boot
 ## Team members
 
 - [Luisa Mosquera](https://github.com/Luisam340)
-- [Santiago Arboleda](https://github.com/SantiCadavid)
 - [Marlon Castañeda](https://github.com/MarlonC102)
-- [Sergio Motato](https://github.com/smotato)
 
 ## Technology in which it was developed
 
