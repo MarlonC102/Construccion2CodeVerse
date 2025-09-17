@@ -16,6 +16,3 @@ public class MedicineOrderItem extends OrderItem {
             public String getDose() { return dose; }
             public String getTreatmentDuration() { return treatmentDuration; }
         }
-
-    }
-}

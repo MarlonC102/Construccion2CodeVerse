@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 
 public class Person {
+    private long id;
     private String name;
     private String idNumber;
     private String email;
@@ -13,9 +14,14 @@ public class Person {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
     private String address;
-    private String type;
 
-    public Person(){}
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -63,13 +69,5 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }

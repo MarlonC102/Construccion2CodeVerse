@@ -16,4 +16,13 @@ public enum Role {
     public String getRol() {
         return rol;
     }
+
+    public static Role fromDescription(String rolSearch) {
+        for (Role role : Role.values()) {
+            if (role.rol.equalsIgnoreCase(rolSearch)) {
+                return role;
+            }
+        }
+        throw new IllegalArgumentException("Rol no encontrado: " + rolSearch);
+    }
 }
