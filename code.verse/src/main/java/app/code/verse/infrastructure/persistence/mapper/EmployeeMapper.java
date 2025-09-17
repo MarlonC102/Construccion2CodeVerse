@@ -1,7 +1,7 @@
-package app.code.verse.infraestructure.persistence.mapper;
+package app.code.verse.infrastructure.persistence.mapper;
 
 import app.code.verse.domain.model.Employee;
-import app.code.verse.infraestructure.persistence.entities.EmployeeEntity;
+import app.code.verse.infrastructure.persistence.entities.EmployeeEntity;
 
 public class EmployeeMapper{
 

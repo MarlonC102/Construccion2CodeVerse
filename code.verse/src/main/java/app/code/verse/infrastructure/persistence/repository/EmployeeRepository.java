@@ -1,7 +1,7 @@
-package app.code.verse.infraestructure.persistence.repository;
+package app.code.verse.infrastructure.persistence.repository;
 
 
-import app.code.verse.infraestructure.persistence.entities.EmployeeEntity;
+import app.code.verse.infrastructure.persistence.entities.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package app.code.verse.infraestructure.persistence.entities;
+package app.code.verse.infrastructure.persistence.entities;
 
 import jakarta.persistence.*;
 
