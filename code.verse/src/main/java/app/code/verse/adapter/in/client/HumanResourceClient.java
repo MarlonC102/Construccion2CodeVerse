@@ -142,6 +142,18 @@ public class HumanResourceClient {
             case "1":
                 rol = Rol.HR.getRol();
                 break;
+            case "2":
+                rol = Rol.NURSE.getRol();
+                break;
+            case "3":
+                rol = Rol.DOCTOR.getRol();
+                break;
+            case "4":
+                rol = Rol.ADMINISTRATIVE_STAFF.getRol();
+                break;
+            case "5":
+                rol = Rol.INFORMATION_SUPPORT.getRol();
+                break;
             default:
                 System.out.println("Opción incorrecta");
         }

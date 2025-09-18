@@ -34,7 +34,7 @@ public class EmployeeAdapter implements EmployeePort{
 
     @Override
     public Employee update(Employee employee) throws Exception {
-        EmployeeEntity existing = employeeRepository.findByIdNumber(employee.getIdNumber());
+        EmployeeEntity existing = employeeRepository.findByIdNumber(employee.getIdNumber()) ;
         EmployeeMapper.partialUpdate(employee, existing);
         EmployeeEntity save = employeeRepository.save(existing);
         return EmployeeMapper.toDomain(save);
