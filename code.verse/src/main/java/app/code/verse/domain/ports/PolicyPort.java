@@ -7,4 +7,5 @@ public interface PolicyPort {
     void update(String patientIdNumber, Policy policy);
     Policy findByPatient(String patientIdNumber);
     void delete(String patientIdNumber);
+    Policy findPolicyById(String policyIdNumber);
 }
