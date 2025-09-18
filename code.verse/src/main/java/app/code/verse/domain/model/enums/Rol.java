@@ -1,15 +1,15 @@
 package app.code.verse.domain.model.enums;
 
-public enum Role {
-    HR("Human Resources"),
-    ADMINISTRATIVE_STAFF("Administrative Staff"),
-    INFORMATION_SUPPORT("Information Support"),
-    NURSE("Nurse"),
+public enum Rol {
+    HR("Recursos Humanos"),
+    ADMINISTRATIVE_STAFF("Personal Administrativo"),
+    INFORMATION_SUPPORT("Soporte"),
+    NURSE("Enfermera"),
     DOCTOR("Doctor");
 
     private final String rol;
 
-    Role(String rol) {
+    Rol(String rol) {
         this.rol = rol;
     }
 
@@ -17,8 +17,8 @@ public enum Role {
         return rol;
     }
 
-    public static Role fromDescription(String rolSearch) {
-        for (Role role : Role.values()) {
+    public static Rol fromDescription(String rolSearch) {
+        for (Rol role : Rol.values()) {
             if (role.rol.equalsIgnoreCase(rolSearch)) {
                 return role;
             }

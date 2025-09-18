@@ -28,6 +28,17 @@ public class EmployeeBuilder {
         employee.setUserName(employeeValidator.userNameValidator(userName));
         employee.setPassword(employeeValidator.passwordValidator(passwoord));
         return employee;
+    }
 
+    public Employee update(Employee employee, String name, String email, String phoneNumber, LocalDate birthDate, String addres, String rol, String userName, String passwoord) throws Exception {
+        employee.setName(name);
+        employee.setEmail(email);
+        employee.setPhoneNumber(phoneNumber);
+        employee.setBirthDate(birthDate);
+        employee.setAddress(addres);
+        employee.setRole(rol);
+        employee.setUserName(userName);
+        employee.setPassword(passwoord);
+        return employee;
     }
 }

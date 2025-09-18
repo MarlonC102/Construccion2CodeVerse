@@ -16,23 +16,24 @@ public class HumanResourcesUseCase {
     private EmployeePort employeePort;
 
     public void create(Employee employee) throws Exception {
-        Employee employeeById = findById(employee.getIdNumber());
+        /*Employee employeeById = findById(employee.getIdNumber());
         Employee employeeByUserName = findByUserName(employee.getUserName());
         if (employeeByUserName != null){
             throw new Exception("Ese nombre de usuario ya está en uso por otro empleado");
         }
         if (employeeById != null){
             throw new Exception("Este empleado ya está registrado");
-        }
+        }*/
         registerEmployee.create(employee);
     }
 
-    public void update(Employee employee) throws Exception {
-        Employee employeeData = findById(employee.getIdNumber());
+    public Employee update(Employee employee) throws Exception {
+        /*Employee employeeData = findById(employee.getIdNumber());
         if (employeeData != null && !employeeData.getIdNumber().equals(employee.getIdNumber())) {
             throw new Exception("Ese nombre de usuario ya está en uso por otro empleado");
-        }
+        }*/
         employeePort.update(employee);
+        return employee;
     }
 
     public void delete(Employee employee) throws Exception {

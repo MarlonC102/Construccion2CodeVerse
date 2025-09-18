@@ -37,6 +37,17 @@ public class EmployeeMapper{
         return employee;
     }
 
+    public static void partialUpdate(Employee source, EmployeeEntity target) {
+        if (source.getName() != null) target.setName(source.getName());
+        if (source.getEmail() != null) target.setEmail(source.getEmail());
+        if (source.getPhoneNumber() != null) target.setPhoneNumber(source.getPhoneNumber());
+        if (source.getBirthDate() != null) target.setBirthDate(source.getBirthDate());
+        if (source.getAddress() != null) target.setAddress(source.getAddress());
+        if (source.getRole() != null) target.setRol(source.getRole());
+        if (source.getUserName() != null) target.setUserName(source.getUserName());
+        if (source.getPassword() != null) target.setPassword(source.getPassword());
+    }
+
 
 }
 

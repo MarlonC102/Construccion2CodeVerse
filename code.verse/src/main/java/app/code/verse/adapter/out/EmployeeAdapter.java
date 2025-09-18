@@ -25,13 +25,19 @@ public class EmployeeAdapter implements EmployeePort{
     }
 
     @Override
-    public void delete(Employee employee) throws Exception {
-
+    public Employee delete(Employee employee) throws Exception {
+        EmployeeEntity entityToUpdate = EmployeeMapper.toEntity(employee);
+        entityToUpdate.setId(employee.getId());
+        EmployeeEntity save = employeeRepository.save(entityToUpdate);
+        return EmployeeMapper.toDomain(save);
     }
 
     @Override
-    public void update(Employee employee) throws Exception {
-
+    public Employee update(Employee employee) throws Exception {
+        EmployeeEntity existing = employeeRepository.findByIdNumber(employee.getIdNumber());
+        EmployeeMapper.partialUpdate(employee, existing);
+        EmployeeEntity save = employeeRepository.save(existing);
+        return EmployeeMapper.toDomain(save);
     }
 
     @Override
