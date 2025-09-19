@@ -1,14 +1,15 @@
 package app.code.verse.domain.ports;
 
 import app.code.verse.domain.model.Employee;
-import app.code.verse.domain.model.Patient;
 
-import java.util.Optional;
+import java.util.List;
 
-public interface EmployeePort {
-    void save(Employee employee) throws Exception;
-    void delete(Employee employee) throws Exception;
-    void update(Employee employee) throws Exception;
+public interface EmployeePort extends PersonPort{
+    Employee create(Employee employee) throws Exception;
+    Employee delete(Employee employee) throws Exception;
+    Employee update(Employee employee) throws Exception;
     Employee findByIdNumber(String idNumber);
+    Employee findByUserName(String userName);
+    List<Employee> findAll();
 
 }

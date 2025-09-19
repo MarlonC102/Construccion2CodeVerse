@@ -1,17 +1,23 @@
 package app.code.verse.domain.services;
 
 import app.code.verse.domain.model.Policy;
-import app.code.verse.domain.model.utils.ValidateDataUtil;
 import app.code.verse.domain.ports.PolicyPort;
 
 public class RegisterPolicy {
     private PolicyPort policyPort;
 
+    public RegisterPolicy(PolicyPort policyPort){
+        this.policyPort = policyPort;
+    }
 
-    public void create(String patientIdNumber, Policy policy) {
-        ValidateDataUtil.validateString(policy.getCompanyName(), "El nombre de la compañía de seguros no puede estar vacío");
-        ValidateDataUtil.validateString(policy.getPolicyNumber(), "El número de poliza no puede estar vacío");
-        ValidateDataUtil.validateLocalDate(policy.getExpirationDate(), "La fecha de expiración de la póliza no puede estar vacía");
+    public void create(String patientIdNumber, Policy policy) throws Exception {
+        checkIfPolicytExists(policy);
         policyPort.register(patientIdNumber, policy);
+    }
+
+    private void checkIfPolicytExists(Policy policy) throws Exception {
+        if (policyPort.findPolicyById(policy.getPolicyNumber())!=null) {
+            throw new IllegalArgumentException("Ya hay un cliente con esta póliza registrada");
+        }
     }
 }

@@ -23,6 +23,3 @@ public class ProcedureOrderItem extends OrderItem {
             public boolean isRequiresSpecialist() { return requiresSpecialist; }
             public String getSpecialistType() { return specialistType; }
         }
-
-    }
-}
