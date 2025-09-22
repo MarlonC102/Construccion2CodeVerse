@@ -37,9 +37,10 @@ public class HumanResourcesUseCase {
     }
 
     public void delete(Employee employee) throws Exception {
-        if (employeePort.findByIdNumber(employee.getIdNumber()) != null) {
-            employeePort.delete(employee);
-        }
+
+        //if (employeePort.findByIdNumber(employee.getIdNumber()) != null) {
+            employeePort.deleteById(employee);
+        //}
     }
 
     public List<Employee> getAllEmployees() {

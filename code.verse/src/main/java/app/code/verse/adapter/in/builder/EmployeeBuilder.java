@@ -27,6 +27,7 @@ public class EmployeeBuilder {
         employee.setRole(employeeValidator.roleValidator(rol));
         employee.setUserName(employeeValidator.userNameValidator(userName));
         employee.setPassword(employeeValidator.passwordValidator(passwoord));
+        employee.setStatus(true);
         return employee;
     }
 

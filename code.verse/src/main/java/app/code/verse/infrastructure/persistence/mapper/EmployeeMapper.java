@@ -48,6 +48,10 @@ public class EmployeeMapper{
         if (source.getPassword() != null) employee.setPassword(source.getPassword());
     }
 
+    /*public static void changeStatus(Employee source, EmployeeEntity employee) {
+        employee.setStatus(source.getStatus() != null ? source.getStatus() : employee.getStatus());
+    }*/
+
 
 }
 
