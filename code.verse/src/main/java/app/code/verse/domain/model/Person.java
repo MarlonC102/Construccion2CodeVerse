@@ -14,6 +14,7 @@ public class Person {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
     private String address;
+    private Boolean status;
 
     public long getId() {
         return id;
@@ -69,5 +70,13 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

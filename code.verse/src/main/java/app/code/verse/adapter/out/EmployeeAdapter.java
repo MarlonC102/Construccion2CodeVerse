@@ -19,24 +19,23 @@ public class EmployeeAdapter implements EmployeePort{
 
     @Override
     public Employee create(Employee employee) throws Exception {
-        EmployeeEntity entity = EmployeeMapper.toEntity(employee);
-        EmployeeEntity save = employeeRepository.save(entity);
+        EmployeeEntity entitySave = EmployeeMapper.toEntity(employee);
+        EmployeeEntity save = employeeRepository.save(entitySave);
         return EmployeeMapper.toDomain(save);
     }
 
     @Override
-    public Employee delete(Employee employee) throws Exception {
-        EmployeeEntity entityToUpdate = EmployeeMapper.toEntity(employee);
-        entityToUpdate.setId(employee.getId());
-        EmployeeEntity save = employeeRepository.save(entityToUpdate);
-        return EmployeeMapper.toDomain(save);
+    public Employee deleteById(Employee employee) throws Exception {
+        EmployeeEntity entityToDelete = employeeRepository.findByIdNumber(employee.getIdNumber()) ;
+         employeeRepository.delete(entityToDelete);
+        return EmployeeMapper.toDomain(entityToDelete);
     }
 
     @Override
     public Employee update(Employee employee) throws Exception {
-        EmployeeEntity existing = employeeRepository.findByIdNumber(employee.getIdNumber()) ;
-        EmployeeMapper.partialUpdate(employee, existing);
-        EmployeeEntity save = employeeRepository.save(existing);
+        EmployeeEntity entityToUpdate = employeeRepository.findByIdNumber(employee.getIdNumber()) ;
+        EmployeeMapper.partialUpdate(employee, entityToUpdate);
+        EmployeeEntity save = employeeRepository.save(entityToUpdate);
         return EmployeeMapper.toDomain(save);
     }
 

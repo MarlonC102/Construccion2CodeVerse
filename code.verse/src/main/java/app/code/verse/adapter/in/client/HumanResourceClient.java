@@ -17,10 +17,17 @@ public class HumanResourceClient {
     private HumanResourcesUseCase humanResourcesUseCase;
     @Autowired
     private EmployeeBuilder employeeBuilder;
+    Employee employee;
     Scanner reader = new Scanner(System.in);
     private static final String HEADER = "| %-20s | %-20s | %-20s | %-20s |%n";
     private static final String ROW_FORMAT = "| %-20s | %-20s | %-20s | %-20s |%n";
-    private static final String MENU = "Ingrese una opción:\n" + "1. Registrar un empleado.\n" + "2. Mostar todos los empleados,\n" + "3. Buscar empleado por número de documento.\n" + "4. Buscar empleado por nombre de usuario.\n5. Actualizar empleado.\n6. Eliminar empleado.";
+    private static final String MENU = "Ingrese una opción:\n" +
+            "1. Registrar un empleado.\n" +
+            "2. Mostar todos los empleados,\n" +
+            "3. Buscar empleado por número de documento.\n" +
+            "4. Buscar empleado por nombre de usuario.\n" +
+            "5. Actualizar empleado.\n" +
+            "6. Eliminar empleado.";
 
     public void session() {
         boolean session = true;
@@ -41,9 +48,11 @@ public class HumanResourceClient {
     }
 
     private boolean options(String op) throws Exception {
+
+        String idNumber;
         switch (op) {
             case "1":
-                Employee employee = registerEmployeeInformation();
+                employee = registerEmployeeInformation();
                 humanResourcesUseCase.create(employee);
                 return true;
             case "2":
@@ -51,8 +60,8 @@ public class HumanResourceClient {
                 return true;
             case "3":
                 System.out.println("Ingrese el número de documento del empleado");
-                String id = reader.nextLine();
-                getEmployeeById(id);
+                idNumber = reader.nextLine();
+                getEmployeeById(idNumber);
                 return true;
             case "4":
                 System.out.println("Ingrese el nombre de usuario del empleado");
@@ -61,9 +70,18 @@ public class HumanResourceClient {
                 return true;
             case "5":
                 System.out.println("Ingrese el número de documento del empleado que desea actualizar");
-                String idNumber = reader.nextLine();
-                updateEmployeeInformation(idNumber);
+                idNumber = reader.nextLine();
+                employee = updateEmployeeInformation(idNumber);
+                humanResourcesUseCase.update(employee);
+
                 return true;
+            case "6":
+                System.out.println("Ingrese el número de documento del empleado que desea eliminar");
+                idNumber = reader.nextLine();
+                deleteEmploye(idNumber);
+
+            return true;
+
             default:
                 return true;
         }
@@ -94,7 +112,7 @@ public class HumanResourceClient {
     }
 
     private Employee updateEmployeeInformation(String idNumber) throws Exception {
-        Employee employee = getEmployeeById(idNumber);
+        employee = getEmployeeById(idNumber);
         String name, email, phoneNumber, address, rol, userName, passwoord, date;
         LocalDate birthDate;
 
@@ -129,9 +147,13 @@ public class HumanResourceClient {
         passwoord = reader.nextLine();
         passwoord = (passwoord == null || passwoord.isEmpty() ? employee.getPassword() : passwoord);
 
-        Employee updated = employeeBuilder.update(employee, name, email, phoneNumber, birthDate, address, rol, userName, passwoord);
 
-        return humanResourcesUseCase.update(updated);
+        return employeeBuilder.update(employee, name, email, phoneNumber, birthDate, address, rol, userName, passwoord);
+    }
+
+    private void deleteEmploye(String idNumber) throws Exception {
+        employee = getEmployeeById(idNumber);
+        humanResourcesUseCase.delete(employee);
     }
 
     private String selectRol() {
@@ -193,4 +215,6 @@ public class HumanResourceClient {
             System.out.printf(ROW_FORMAT, employee.getIdNumber(), employee.getName(), employee.getRole(), employee.getUserName());
         }
     }
+
+
 }

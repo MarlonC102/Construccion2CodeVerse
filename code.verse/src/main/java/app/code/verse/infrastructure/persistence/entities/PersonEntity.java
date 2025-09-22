@@ -29,8 +29,8 @@ public class PersonEntity {
     @Column(nullable = false)
     private String address;
 
-    @Column
-
+    @Column(nullable = false)
+    private Boolean status;
 
     public Long getId() {
         return id;
@@ -86,5 +86,13 @@ public class PersonEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
