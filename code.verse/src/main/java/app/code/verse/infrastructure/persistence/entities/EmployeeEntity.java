@@ -17,7 +17,6 @@ public class EmployeeEntity extends PersonEntity{
     @Column(nullable = false)
     private String password;
 
-
     public String getRol() {
         return role;
     }

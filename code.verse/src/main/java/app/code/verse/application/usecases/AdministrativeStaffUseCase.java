@@ -1,28 +1,26 @@
 package app.code.verse.application.usecases;
 
-import app.code.verse.domain.model.EmergencyContact;
 import app.code.verse.domain.model.Patient;
-import app.code.verse.domain.model.Policy;
-import app.code.verse.domain.ports.EmergencyContactPort;
 import app.code.verse.domain.ports.PatientPort;
-import app.code.verse.domain.ports.PolicyPort;
-import app.code.verse.domain.services.RegisterEmergencyContact;
 import app.code.verse.domain.services.RegisterPatient;
-import app.code.verse.domain.services.RegisterPolicy;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class AdministrativeStaffUseCase {
-    private RegisterPatient registerPatient;
-    private RegisterEmergencyContact registerEmergencyContact;
-    private RegisterPolicy registerPolicy;
+    @Autowired
     private PatientPort patientPort;
-    private PolicyPort policyPort;
-    private EmergencyContactPort emergencyContactPort;
+    @Autowired
+    private RegisterPatient registerPatient;
 
-    public void createPatient(Patient patient, EmergencyContact emergencyContact, Policy policy) throws Exception {
+    public void create(Patient patient) throws Exception {
         registerPatient.create(patient);
+        //registerPolicy.create(patient.getIdNumber(), policy);
+        //registerEmergencyContact.create(patient.getIdNumber(), emergencyContact);
     }
 
-    public void createPolicy(Policy policy, Patient patient) throws Exception {
+   /* public void createPolicy(Policy policy, Patient patient) throws Exception {
         registerPolicy.create(patient.getIdNumber(), policy);
     }
 
@@ -38,10 +36,11 @@ public class AdministrativeStaffUseCase {
         return patient;
     }
 
-    public void updatePatient(Patient patient) throws Exception {
-        if (findById(patient.getIdNumber()) != null) {
+    public Patient updatePatient(Patient patient) throws Exception {
+        //if (findById(patient.getIdNumber()) != null) {
             patientPort.update(patient);
-        }
+            return patient;
+        //}
     }
 
     public void updatePolicy(String patientIdNumber, Policy policy) {
@@ -54,7 +53,7 @@ public class AdministrativeStaffUseCase {
 
     public void deletePatient(Patient patient) throws Exception {
         if (findById(patient.getIdNumber()) != null) {
-            patientPort.delete(patient);
+            patientPort.deleteById(patient);
             deletePolicy(patient.getIdNumber());
             deleteEmergencyContact(patient.getIdNumber());
         }
@@ -72,5 +71,5 @@ public class AdministrativeStaffUseCase {
         }
     }
 
-
+*/
 }
