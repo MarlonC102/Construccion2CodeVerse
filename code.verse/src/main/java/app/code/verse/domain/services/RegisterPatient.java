@@ -2,26 +2,25 @@ package app.code.verse.domain.services;
 
 import app.code.verse.domain.model.Patient;
 import app.code.verse.domain.ports.PatientPort;
-import app.code.verse.domain.ports.PersonPort;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-;
-
+@Service
 public class RegisterPatient {
-    private PersonPort personPort;
+    @Autowired
     private PatientPort patientPort;
 
-    public RegisterPatient(PersonPort personPort, PatientPort patientPort){
-        this.personPort = personPort;
+    public RegisterPatient(PatientPort patientPort){
         this.patientPort = patientPort;
     }
 
     public void create(Patient patient) throws Exception {
-        checkIfPatientExists(patient);
-        patientPort.save(patient);
+        //checkIfPatientExists(patient);
+        patientPort.create(patient);
     }
 
     private void checkIfPatientExists(Patient patient) throws Exception {
-        if (personPort.existsByIdNumber(patient.getIdNumber())) {
+        if (patientPort.findByIdNumber(patient.getIdNumber()) != null) {
             throw new IllegalArgumentException("El paciente ya existe");
         }
     }

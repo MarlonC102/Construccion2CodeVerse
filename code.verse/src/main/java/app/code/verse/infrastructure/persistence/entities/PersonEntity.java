@@ -17,7 +17,7 @@ public class PersonEntity {
     @Column(unique = true, nullable = false)
     private String idNumber;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private String email;
 
     @Column(unique = true, nullable = false)

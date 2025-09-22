@@ -4,7 +4,7 @@ import app.code.verse.domain.model.Employee;
 
 import java.util.List;
 
-public interface EmployeePort extends PersonPort{
+public interface EmployeePort{
     Employee create(Employee employee) throws Exception;
     Employee deleteById(Employee employee) throws Exception;
     Employee update(Employee employee) throws Exception;

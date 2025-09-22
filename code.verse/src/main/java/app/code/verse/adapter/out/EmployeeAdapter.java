@@ -52,11 +52,6 @@ public class EmployeeAdapter implements EmployeePort{
     }
 
     @Override
-    public boolean existsByIdNumber(String idNumber) {
-        return employeeRepository.existsByIdNumber(idNumber);
-    }
-
-    @Override
     public List<Employee> findAll() {
         return employeeRepository.findAll()
                 .stream()

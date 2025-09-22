@@ -13,10 +13,12 @@ import java.util.Scanner;
 
 @Controller
 public class HumanResourceClient {
+
     @Autowired
     private HumanResourcesUseCase humanResourcesUseCase;
     @Autowired
     private EmployeeBuilder employeeBuilder;
+
     Employee employee;
     Scanner reader = new Scanner(System.in);
     private static final String HEADER = "| %-20s | %-20s | %-20s | %-20s |%n";
