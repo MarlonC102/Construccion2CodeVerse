@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientAdapter implements PatientPort {
@@ -35,11 +36,25 @@ public class PatientAdapter implements PatientPort {
 
     @Override
     public Patient findByIdNumber(String idNumber) {
-        return null;
+        PatientEntity patientEntity = patientRepository.findByIdNumber(idNumber);
+        return PatientMapper.toDomain(patientEntity);
+    }
+
+    @Override
+    public List<Patient> findByNameContainingIgnoreCase(String name) throws Exception {
+        List<PatientEntity> patientEntity = patientRepository.findByNameContainingIgnoreCase(name);
+        return patientEntity.stream()
+                .filter(p -> p.getName() != null &&
+                        p.getName().toLowerCase().contains(name.toLowerCase()))
+                .map(PatientMapper::toDomain)
+                .toList();
     }
 
     @Override
     public List<Patient> findAll() {
-        return List.of();
+        return patientRepository.findAll()
+                .stream()
+                .map(PatientMapper::toDomain)
+                .collect(Collectors.toList());
     }
 }
