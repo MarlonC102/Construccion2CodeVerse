@@ -2,12 +2,15 @@ package app.code.verse.adapter.in.client;
 
 import app.code.verse.adapter.in.builder.PatientBuilder;
 import app.code.verse.application.usecases.AdministrativeStaffUseCase;
+import app.code.verse.domain.model.Employee;
 import app.code.verse.domain.model.Patient;
 import app.code.verse.domain.model.enums.Gender;
 import app.code.verse.domain.model.enums.Rol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 @Controller
@@ -21,13 +24,7 @@ public class AdministrativeStaffClient {
     Scanner reader = new Scanner(System.in);
     private static final String HEADER = "| %-20s | %-20s | %-20s | %-20s |%n";
     private static final String ROW_FORMAT = "| %-20s | %-20s | %-20s | %-20s |%n";
-    private static final String MENU = "Ingrese una opción:\n" +
-            "1. Registrar paciente.\n" +
-            "2. Mostar todos los pacientes,\n" +
-            "3. Buscar paciente por número de documento.\n" +
-            "4. Buscar paciente por nombre de usuario.\n" +
-            "5. Actualizar paciente.\n" +
-            "6. Eliminar paciente.";
+    private static final String MENU = "Ingrese una opción:\n1. Registrar paciente.\n2. Mostar todos los pacientes.git \n3. Buscar paciente por número de documento.\n4. Buscar paciente por nombre.\n5. Actualizar paciente.\n6. Eliminar paciente.";
 
     public void session() {
         boolean session = true;
@@ -56,17 +53,17 @@ public class AdministrativeStaffClient {
                 staffUseCase.create(patient);
                 return true;
             case "2":
-
+                getAllPatient();
                 return true;
             case "3":
                 System.out.println("Ingrese el número de documento del paciente");
                 idNumber = reader.nextLine();
-
+                getPatientById(idNumber);
                 return true;
             case "4":
-                System.out.println("Ingrese el nombre de usuario del paciente");
-                String userName = reader.nextLine();
-
+                System.out.println("Ingrese el nombre del paciente");
+                String name = reader.nextLine();
+                getPatientByName(name);
                 return true;
             case "5":
                 System.out.println("Ingrese el número de documento del paciente que desea actualizar");
@@ -132,6 +129,39 @@ public class AdministrativeStaffClient {
                 System.out.println("Opción incorrecta");
         }
         return rol;
+    }
+
+    private void getAllPatient() throws Exception {
+        System.out.println("Pacientes:");
+        List<Patient> patients = staffUseCase.getAllPatient();
+        if (patients.isEmpty()) {
+            System.out.println("No hay pacientes registrados.");
+        } else {
+            System.out.printf(HEADER, "Documento", "Nombre", "Teléfono", "Dirección");
+            patients.forEach(pat -> System.out.printf(ROW_FORMAT, pat.getIdNumber(), pat.getName(), pat.getPhoneNumber(), pat.getAddress()));
+        }
+    }
+
+    private void getPatientByName(String name) throws Exception {
+        System.out.println("Pacientes");
+        List<Patient> patients = staffUseCase.findByName(name);
+        if (patients.isEmpty()) {
+            System.out.println("No hay pacientes registrados.");
+        } else {
+            System.out.printf(HEADER, "Documento", "Nombre", "Teléfono", "Dirección");
+            patients.forEach(pat -> System.out.printf(ROW_FORMAT, pat.getIdNumber(), pat.getName(), pat.getPhoneNumber(), pat.getAddress()));
+        }
+    }
+
+    private void getPatientById(String document) throws Exception {
+        System.out.println("Pacientes");
+        Patient patient = staffUseCase.findById(document);
+        if (patient == null) {
+            System.out.println("No hay pacientes registrados.");
+        } else {
+            System.out.printf(HEADER, "Documento", "Nombre", "Teléfono", "Dirección");
+            System.out.printf(ROW_FORMAT, patient.getIdNumber(), patient.getName(), patient.getPhoneNumber(), patient.getAddress());
+        }
     }
 
 
