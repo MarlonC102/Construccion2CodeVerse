@@ -185,7 +185,7 @@ public class HumanResourceClient {
     }
 
     private void getAllEmployee() {
-        System.out.println("Lista de todos los empleados");
+        System.out.println("Empleados:");
         List<Employee> employees = humanResourcesUseCase.getAllEmployees();
         if (employees.isEmpty()) {
             System.out.println("No hay empleados registrados.");
