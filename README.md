@@ -25,4 +25,4 @@ System that allows you to record, update, and consult a restaurant's inventory, 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/Luisam340/Construccion2CodeVerse.git
+   git clone https://github.com/MarlonC102/Construccion2CodeVerse.git
