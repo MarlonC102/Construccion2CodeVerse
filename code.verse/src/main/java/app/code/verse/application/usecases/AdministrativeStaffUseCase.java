@@ -43,6 +43,14 @@ public class AdministrativeStaffUseCase {
         return patient;
     }
 
+    public Patient updatePatient(Patient patient) throws Exception {
+        if (findById(patient.getIdNumber()) == null) {
+            throw new IllegalArgumentException("Paciente no encontrado");
+        }
+        patientPort.update(patient);
+        return patient;
+    }
+
    /* public void createPolicy(Policy policy, Patient patient) throws Exception {
         registerPolicy.create(patient.getIdNumber(), policy);
     }
@@ -59,12 +67,7 @@ public class AdministrativeStaffUseCase {
         return patient;
     }
 
-    public Patient updatePatient(Patient patient) throws Exception {
-        //if (findById(patient.getIdNumber()) != null) {
-            patientPort.update(patient);
-            return patient;
-        //}
-    }
+
 
     public void updatePolicy(String patientIdNumber, Policy policy) {
         policyPort.update(patientIdNumber, policy);
